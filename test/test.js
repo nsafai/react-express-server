@@ -6,21 +6,21 @@
 const { expect } = require('chai')
 
 // Import the functions you are going to test
-const { random, randomD, randomRolls } = require('../utils')
+const { randomN, randomD, randomRolls } = require('../utils')
 
 // Describe this set of tests.
-// This block should test a single function random() in this case
-describe('utils: random()', () => {
-  // Test random() returns a number
+// This block should test a single function randomN() in this case
+describe('utils: randomN()', () => {
+  // Test randomN() returns a number
   it('Expect a number', () => {
     // Throw an error and the test fails
-    const n = random(6)
+    const n = randomN(6)
     expect(n).to.be.a('number')
   })
 
-  // Test random() returns an integer
+  // Test randomN() returns an integer
   it('Expects an integer', () => {
-    const n = random(6)
+    const n = randomN(6)
     expect(n).to.satisfy(Number.isInteger)
   })
 
@@ -30,7 +30,7 @@ describe('utils: random()', () => {
   // Expect a number greater than or equal to 0
   it('Expect n >= 0 and ', () => {
     for (let i = 0; i < max; i += 1) {
-      const n = random(max)
+      const n = randomN(max)
       expect(n).to.be.at.least(0) // at least 0
       expect(n).to.be.below(max) // below max
     }
@@ -47,7 +47,7 @@ describe('utils: randomD()', () => {
 
   // Is it an integer?
   it('Expects an integer', () => {
-    const n = random(6)
+    const n = randomN(6)
     expect(n).to.satisfy(Number.isInteger)
   })
 

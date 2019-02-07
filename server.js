@@ -2,7 +2,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const { random, randomD, randomRolls } = require('./utils')
+const { randomN, randomD, randomRolls } = require('./utils')
 
 const app = express()
 
@@ -27,9 +27,44 @@ app.get('/about', (req, res) => {
 // Test this route with: http://localhost:4000/random?n=99
 // Where n=99 sets the range of the random number returned
 app.get('/random', (req, res) => {
-  const { n } = req.query
-  const value = random(n)
+  console.log(req.query);
+  const { n } = req.query;
+  const value = randomN(n);
   res.json({ value })
+})
+
+app.get('/randomD', (req, res) => {
+  const { n } = req.query;
+  const value = randomD(n);
+  res.json({
+    value,
+    message: `you got a random number betwen 0 and ${n}. Specify a different max by appending ?n=MAX to your request.`,
+  });
+})
+
+app.get('/random/die', (req, res) => {
+  const { n } = req.query;
+  const value = randomD(n);
+  res.json({
+    value,
+    message: `you got a random number betwen 0 and ${n}. Specify a different max by appending ?n=MAX to your request.`,
+  });
+})
+
+app.get('/random/dice', (req, res) => {
+  const { n, s } = req.query;
+  const values = randomRolls(n, s);
+  let total = 0;
+
+  for (let i = 0; i < values.length; i += 1) {
+    total += values[i];
+  }
+
+  res.json({
+    values,
+    total,
+    message: `you rolled ${n} dice with ${s} sides. You can change these parameters with ?n=NUMBEROFDICE and ?s=NUMBEROFSIDES to your request.`,
+  });
 })
 
 const port = 4000

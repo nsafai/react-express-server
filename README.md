@@ -88,7 +88,7 @@ We need to a function to generate a series of die rolls. This function is stubbe
 	- It should return JSON formatted with intuitive properties
 	- Add a property that holds the total of all rolls
 
-##Challenge 4** 
+**Challenge 4** 
 
 Modify the API to work with path rather than the query string. For example: 
 

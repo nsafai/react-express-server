@@ -20,26 +20,17 @@ app.get('/', (req, res) => {
 // Test this route with:
 app.get('/about', (req, res) => {
   // This Object is converted to JSON and returned.
-  res.json({ about: 'this service generates a random numbers.' })
+  res.json({ about: 'This service generates a random numbers.' })
 })
 
 // Random number route
 // Test this route with: http://localhost:4000/random?n=99
 // Where n=99 sets the range of the random number returned
 app.get('/random', (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   const { n } = req.query;
   const value = randomN(n);
   res.json({ value })
-})
-
-app.get('/randomD', (req, res) => {
-  const { n } = req.query;
-  const value = randomD(n);
-  res.json({
-    value,
-    message: `you got a random number betwen 0 and ${n}. Specify a different max by appending ?n=MAX to your request.`,
-  });
 })
 
 app.get('/random/die', (req, res) => {
